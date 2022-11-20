@@ -1,0 +1,22 @@
+
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+
+development:
+  <<: *default
+  database: loja
+  username: admin
+  password: 123456
+  host: localhost
+  port: 5432
+test:
+  <<: *default
+  database: loja_test
+production:
+  <<: *default
+  database: <%= ENV["LOJA_DATABASE"] %>
+  username: <%= ENV["LOJA_USERNAME"] %>
+  password: <%= ENV["LOJA_DATABASE_PASSWORD"] %>
+  host: <%= ENV["LOJA_HOST"] %>
